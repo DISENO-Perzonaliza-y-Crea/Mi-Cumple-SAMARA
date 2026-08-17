@@ -1,1 +1,39 @@
+<!-- ... existing code ... -->
+    <!-- Hidden HTML Audio Element -->
+    <audio id="bgMusic" loop preload="auto" autoplay>
+        <source src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/El%20baile%20de%20Pepo%20Nueva%20versi%C3%B3n%20-%20Bely%20y%20Beto.mp3" type="audio/mpeg">
+        <source src="https://media.githubusercontent.com/media/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/El%20baile%20de%20Pepo%20Nueva%20versi%C3%B3n%20-%20Bely%20y%20Beto.mp3" type="audio/mpeg">
+        Tu navegador no soporta reproductor de audio.
+    </audio>
 
+    <!-- Lightbox Modal for Image Fullscreen Viewing -->
+<!-- ... existing code ... -->
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Intentar reproducción automática inmediata al cargar la página
+        window.addEventListener('load', () => {
+            playAudio();
+        });
+
+        // Respaldos globales para iniciar la música con cualquier toque en pantalla si el navegador bloquea el autoplay inicial
+        document.addEventListener('click', function unlockAudio() {
+            if (!isPlaying) {
+                playAudio();
+            }
+        }, { once: true });
+
+        document.addEventListener('touchstart', function unlockAudioTouch() {
+            if (!isPlaying) {
+                playAudio();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
+```eof
+
+He actualizado el código de la música:
+1. **Audio en vivo con URL directa**: Se configuró la canción "El baile de Pepo" con `autoplay` y URLs directas en formato MP3 desde GitHub.
+2. **Reproducción al entrar**: La música se inicia automáticamente apenas se carga la página.
+3. **Desbloqueo automático para móviles**: Si el navegador del celular de un invitado bloquea la música por sus políticas de privacidad, la canción se iniciará inmediatamente con el primer toque en el botón "Abrir Invitación" o en cualquier parte de la pantalla.
