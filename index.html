@@ -1,39 +1,488 @@
-<!-- ... existing code ... -->
-    <!-- Hidden HTML Audio Element -->
-    <audio id="bgMusic" loop preload="auto" autoplay>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Cumpleaños de Samara! 🎉</title>
+    
+    <!-- Meta etiquetas para portada al compartir en WhatsApp, Facebook y Redes Sociales -->
+    <meta property="og:title" content="¡Cumpleaños de Samara! 🎉">
+    <meta property="og:description" content="¡Estás invitado al cumpleaños de Samara! Clic aquí para abrir la invitación interactiva 🎈✨">
+    <meta property="og:image" content="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/portada%20(3).png">
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/portada%20(3).png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="¡Cumpleaños de Samara! 🎉">
+    <meta name="twitter:description" content="¡Estás invitado al cumpleaños de Samara! Clic para abrir la invitación.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/portada%20(3).png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        belyYellow: '#FFDE00',
+                        belyBlue: '#00A8FF',
+                        belyOrange: '#FF6B00',
+                        belyRed: '#FF2E93',
+                        belyPurple: '#8E44AD'
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #FFDE00 0%, #FF6B00 50%, #00A8FF 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .bounce-gentle {
+            animation: bounceGentle 2s infinite;
+        }
+
+        @keyframes bounceGentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .pulse-btn {
+            animation: pulseBtn 1.5s infinite;
+        }
+
+        @keyframes pulseBtn {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 46, 147, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(255, 46, 147, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 46, 147, 0); }
+        }
+
+        .equalizer-bar {
+            animation: equalizer 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes equalizer {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+
+        .equalizer-bar:nth-child(2) { animation-delay: 0.2s; }
+        .equalizer-bar:nth-child(3) { animation-delay: 0.4s; }
+        .equalizer-bar:nth-child(4) { animation-delay: 0.1s; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased flex flex-col min-h-screen relative pb-20">
+
+    <!-- AUDIO ELEMENT FOR BACKGROUND MUSIC -->
+    <audio id="bgMusic" loop preload="auto">
         <source src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/El%20baile%20de%20Pepo%20Nueva%20versi%C3%B3n%20-%20Bely%20y%20Beto.mp3" type="audio/mpeg">
-        <source src="https://media.githubusercontent.com/media/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/El%20baile%20de%20Pepo%20Nueva%20versi%C3%B3n%20-%20Bely%20y%20Beto.mp3" type="audio/mpeg">
-        Tu navegador no soporta reproductor de audio.
+        <source src="https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/El%20baile%20de%20Pepo%20Nueva%20versi%C3%B3n%20-%20Bely%20y%20Beto.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/musica.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Welcome Modal for Browser Autoplay Compliance -->
+    <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-500">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border-4 border-belyYellow relative overflow-hidden transform transition-all duration-300 scale-100">
+            <div class="absolute -top-10 -right-10 w-24 h-24 bg-belyBlue rounded-full opacity-20"></div>
+            <div class="absolute -bottom-10 -left-10 w-24 h-24 bg-belyRed rounded-full opacity-20"></div>
+            
+            <div class="w-20 h-20 bg-gradient-to-tr from-belyYellow to-belyOrange rounded-full mx-auto flex items-center justify-center text-4xl shadow-lg mb-4 bounce-gentle">
+                🎉
+            </div>
+            
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-belyRed mb-2">¡Bienvenido!</h2>
+            <p class="text-slate-600 mb-6 font-quicksand font-bold">
+                ¡Estás invitado al cumpleaños de <span class="text-belyOrange font-extrabold">SAMARA</span>! 🎈
+            </p>
+            
+            <button id="openInvitationBtn" onclick="startExperience()" class="w-full py-4 px-6 bg-gradient-to-r from-belyRed via-belyOrange to-belyYellow hover:from-belyOrange hover:to-belyRed text-white font-extrabold text-xl rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3 cursor-pointer">
+                <i class="fa-solid fa-envelope-open-text text-2xl"></i>
+                <span>Abrir Invitación</span>
+            </button>
+            <p class="text-xs text-slate-400 mt-3 font-quicksand">Haz clic para iniciar la música y la fiesta 🎵</p>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-2xl mx-auto px-4 w-full flex-grow flex flex-col gap-6 my-4 relative z-10">
+
+        <!-- STACKED IMAGES (NO SPACES / CONTINUOUS) -->
+        <div class="bg-white rounded-3xl shadow-2xl border-4 border-white overflow-hidden flex flex-col p-0 m-0">
+            <!-- IMAGE 1: SAMARA.png -->
+            <div class="relative cursor-pointer group leading-none m-0 p-0" onclick="openLightbox(0)">
+                <img id="img-1" 
+                     src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA.png" 
+                     onerror="this.onerror=null; this.src='https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/SAMARA.png';"
+                     alt="Invitación Samara 1" 
+                     class="w-full h-auto block m-0 p-0">
+                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-lg font-bold">
+                    <span class="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Completa
+                    </span>
+                </div>
+            </div>
+
+            <!-- IMAGE 2: SAMARA (1).png -->
+            <div class="relative cursor-pointer group leading-none m-0 p-0" onclick="openLightbox(1)">
+                <img id="img-2" 
+                     src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(1).png" 
+                     onerror="this.onerror=null; this.src='https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/SAMARA%20(1).png';"
+                     alt="Invitación Samara 2" 
+                     class="w-full h-auto block m-0 p-0">
+                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-lg font-bold">
+                    <span class="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Completa
+                    </span>
+                </div>
+            </div>
+
+            <!-- IMAGE 3: SAMARA (2).png -->
+            <div id="image3Container" class="relative group leading-none m-0 p-0">
+                <!-- Location Button overlayed at top of 3rd image -->
+                <div id="draggableLocationBtn" 
+                     style="top: 8%; left: 50%; transform: translateX(-50%);"
+                     class="absolute z-20 flex justify-center px-3 transition-shadow">
+                    <a id="locationLink"
+                       href="https://www.google.com/maps/place/Loncher%C3%ADa+El+Mezquite/@20.6295609,-100.2892778,3a,75y,308.32h,90t/data=!3m10!1e1!3m8!1sUro2brud0TVOpLMCJQl_Lw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DUro2brud0TVOpLMCJQl_Lw%26yaw%3D308.31921359918687!7i16384!8i8192!9m2!1b1!2i51!4m6!3m5!1s0x85d35d11e96fb45d:0x48a60daa7ecdf9c3!8m2!3d20.6294752!4d-100.2892171!16s%2Fg%2F11j132409h?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="pulse-btn bg-gradient-to-r from-belyRed via-belyOrange to-belyYellow hover:scale-105 active:scale-95 text-white font-black text-sm sm:text-lg py-4 sm:py-5 px-7 sm:px-9 rounded-full shadow-2xl border-2 sm:border-4 border-white flex items-center gap-3 transition-transform backdrop-blur-sm">
+                        <i class="fa-solid fa-location-dot text-belyYellow text-xl sm:text-2xl animate-bounce"></i>
+                        <span>📍 Clic aquí para ver la Ubicación</span>
+                    </a>
+                </div>
+
+                <div class="relative cursor-pointer" onclick="openLightbox(2)">
+                    <img id="img-3" 
+                         src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(2).png" 
+                         onerror="this.onerror=null; this.src='https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/SAMARA%20(2).png';"
+                         alt="Invitación Samara 3" 
+                         class="w-full h-auto block m-0 p-0">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-lg font-bold pointer-events-none">
+                        <span class="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Completa
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN TIMER CARD -->
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyYellow p-5 sm:p-6 text-center transform transition-all hover:scale-[1.01]">
+            <h3 class="text-xl sm:text-2xl font-black text-belyRed mb-1 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-hourglass-half animate-spin text-belyOrange" style="animation-duration: 3s;"></i>
+                <span>¡Faltan Solo!</span>
+                <i class="fa-solid fa-hourglass-half animate-spin text-belyOrange" style="animation-duration: 3s;"></i>
+            </h3>
+            <p class="text-xs sm:text-sm font-bold text-slate-600 mb-4 font-quicksand">
+                Cuenta regresiva para la fiesta • <span class="text-belyBlue font-black">23 de Agosto de 2026 - 3:00 PM</span>
+            </p>
+            
+            <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
+                <div class="bg-gradient-to-b from-yellow-300 via-belyYellow to-yellow-500 text-slate-900 rounded-2xl p-2 sm:p-3 shadow-md flex flex-col items-center border-2 border-white">
+                    <span id="cd-days" class="text-2xl sm:text-4xl font-black tracking-tight">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-800">Días</span>
+                </div>
+                <div class="bg-gradient-to-b from-amber-400 via-belyOrange to-orange-600 text-white rounded-2xl p-2 sm:p-3 shadow-md flex flex-col items-center border-2 border-white">
+                    <span id="cd-hours" class="text-2xl sm:text-4xl font-black tracking-tight">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Horas</span>
+                </div>
+                <div class="bg-gradient-to-b from-rose-500 via-belyRed to-red-600 text-white rounded-2xl p-2 sm:p-3 shadow-md flex flex-col items-center border-2 border-white">
+                    <span id="cd-minutes" class="text-2xl sm:text-4xl font-black tracking-tight">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Min.</span>
+                </div>
+                <div class="bg-gradient-to-b from-sky-400 via-belyBlue to-blue-600 text-white rounded-2xl p-2 sm:p-3 shadow-md flex flex-col items-center border-2 border-white">
+                    <span id="cd-seconds" class="text-2xl sm:text-4xl font-black tracking-tight">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Seg.</span>
+                </div>
+            </div>
+            
+            <div id="countdownFinished" class="hidden text-2xl font-black text-belyRed animate-bounce mt-2">
+                🎉 ¡Llegó el gran día! ¡A celebrar! 🎉
+            </div>
+        </div>
+
+        <!-- TARJETA CON MENSAJE ESPECIAL -->
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyRed p-6 sm:p-8 text-center relative overflow-hidden transform transition-all hover:scale-[1.01]">
+            <div class="absolute -top-10 -right-10 w-28 h-28 bg-belyYellow/30 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-belyBlue/30 rounded-full blur-xl pointer-events-none"></div>
+
+            <div class="relative z-10 space-y-4 font-quicksand">
+                <p class="text-base sm:text-xl font-bold text-slate-800 leading-relaxed">
+                    No olvides traer tu mejor sonrisa, muchas ganas de pasarla increíble y disfrutar de este día tan especial junto con <span class="text-belyRed font-black">Samara</span>. 💖✨
+                </p>
+
+                <div class="bg-gradient-to-r from-amber-50 via-pink-50 to-amber-50 p-4 rounded-2xl border-2 border-dashed border-belyOrange/40 text-sm sm:text-base font-bold text-slate-700 my-3">
+                    🎁 Y si deseas consentir a Samara, un pequeño regalito será recibido con mucho cariño. 🥰
+                </div>
+
+                <p class="text-lg sm:text-2xl font-black text-belyOrange tracking-wide animate-pulse">
+                    ¡Nos encantará celebrar contigo! 🎉💕
+                </p>
+            </div>
+        </div>
+
+        <!-- PHOTO GALLERY CARD -->
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyOrange p-5 sm:p-6 text-center transform transition-all hover:scale-[1.01]">
+            <h3 class="text-xl sm:text-2xl font-black text-belyOrange mb-1 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-camera-retro text-belyRed animate-bounce"></i>
+                <span>Galería de Fotos de Samara</span>
+                <i class="fa-solid fa-sparkles text-belyYellow"></i>
+            </h3>
+            <p class="text-xs sm:text-sm font-bold text-slate-600 mb-4 font-quicksand">
+                Toca cualquier foto para verla en pantalla completa 📸✨
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(0)">
+                    <img src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/2122b892-3a6f-4f01-8089-7679ec888468.jpg" alt="Foto 1" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(1)">
+                    <img src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/2181bb67-e34a-48ac-a4dc-dc8aefa7beef.jpg" alt="Foto 2" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(2)">
+                    <img src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/3645fb1e-6560-4062-a37d-fd4e7b2b8ef9.jpg" alt="Foto 3" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(3)">
+                    <img src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/751177ab-1d2e-45fb-9a14-a006f37fb67b.jpg" alt="Foto 4" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(4)">
+                    <img src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/7f8fd9f8-3cf4-42b3-ae6b-7cd20d0b40a7.jpg" alt="Foto 5" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(5)">
+                    <img src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/8c4b7da4-a083-43f3-98d8-34b2d51869ee.jpg" alt="Foto 6" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHATSAPP & CONTACT CARD -->
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyBlue p-5 sm:p-7 text-center transform transition-all hover:scale-[1.01]">
+            <h3 class="text-xl sm:text-2xl font-black text-belyBlue mb-3 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-comments text-belyRed animate-bounce"></i>
+                <span>¿Tienes dudas o necesitas ayuda?</span>
+            </h3>
+
+            <div class="space-y-3 font-quicksand text-slate-700 text-sm sm:text-base font-bold mb-6 text-center leading-relaxed">
+                <p>
+                    Si tienes alguna duda sobre la ubicación, o necesitas indicaciones para llegar, no te preocupes. 😊✨
+                </p>
+                <p>
+                    Puedes enviarme un mensaje por WhatsApp o llamarme a ese número y con mucho gusto te ayudaré a resolver cualquier pregunta o a orientarte para que puedas llegar sin ningún problema. 📍🎉
+                </p>
+                <p class="text-belyOrange font-extrabold text-base sm:text-lg pt-1">
+                    ¡Será un gusto recibirte y compartir contigo este día tan especial! 🥳💖
+                </p>
+            </div>
+
+            <a href="https://api.whatsapp.com/send?phone=5214421234567&text=%C2%A1Hola!%20Tengo%20una%20duda%20o%20necesito%20indicaciones%20para%20el%20cumplea%C3%B1os%20de%20Samara%20%F0%9F%8E%89%E2%9C%A8" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-3 w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-green-600 hover:to-emerald-700 text-white font-extrabold text-base sm:text-lg rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <span>Enviar mensaje o llamar por WhatsApp</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FLOATING MUSIC PLAYER BUTTON -->
+    <div class="fixed bottom-4 right-4 z-40 flex items-center gap-2 bg-white/90 backdrop-blur-md p-2 px-3 rounded-full shadow-2xl border-2 border-belyRed">
+        <button id="musicToggleBtn" onclick="toggleMusic()" class="w-10 h-10 bg-gradient-to-tr from-belyRed to-belyOrange text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer" title="Reproducir / Pausar Música">
+            <i id="playIcon" class="fa-solid fa-music"></i>
+        </button>
+        <div id="soundwave" class="flex items-center gap-1 h-5 px-1 opacity-50 transition-opacity">
+            <span class="w-1 bg-belyRed rounded-full equalizer-bar"></span>
+            <span class="w-1 bg-belyOrange rounded-full equalizer-bar"></span>
+            <span class="w-1 bg-belyYellow rounded-full equalizer-bar"></span>
+            <span class="w-1 bg-belyBlue rounded-full equalizer-bar"></span>
+        </div>
+    </div>
+
     <!-- Lightbox Modal for Image Fullscreen Viewing -->
-<!-- ... existing code ... -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-4 right-4 text-white text-3xl p-2 hover:text-belyYellow transition-colors" onclick="closeLightbox()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightboxImg" class="max-w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl border-2 border-white/20" src="" alt="Vista ampliada">
+    </div>
+
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const playIcon = document.getElementById('playIcon');
+        const soundwave = document.getElementById('soundwave');
+        const welcomeModal = document.getElementById('welcomeModal');
+
+        const images = [
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA.png",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(1).png",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(2).png"
+        ];
+
+        const galleryImages = [
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/2122b892-3a6f-4f01-8089-7679ec888468.jpg",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/2181bb67-e34a-48ac-a4dc-dc8aefa7beef.jpg",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/3645fb1e-6560-4062-a37d-fd4e7b2b8ef9.jpg",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/751177ab-1d2e-45fb-9a14-a006f37fb67b.jpg",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/7f8fd9f8-3cf4-42b3-ae6b-7cd20d0b40a7.jpg",
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/8c4b7da4-a083-43f3-98d8-34b2d51869ee.jpg"
+        ];
+
+        let isPlaying = false;
+
+        // Function called when user clicks "Abrir Invitación" button
+        function startExperience() {
+            welcomeModal.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                welcomeModal.style.display = 'none';
+            }, 500);
+
+            fireConfetti();
+            playAudio();
+        }
+
+        function playAudio() {
+            if (!bgMusic) return;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                playIcon.className = "fa-solid fa-pause";
+                soundwave.classList.remove('opacity-50');
+            }).catch(err => {
+                console.log("Autoplay dynamic lock:", err);
+                isPlaying = false;
+                playIcon.className = "fa-solid fa-play";
+                soundwave.classList.add('opacity-50');
+            });
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+                playIcon.className = "fa-solid fa-play";
+                soundwave.classList.add('opacity-50');
+            } else {
+                playAudio();
+            }
+        }
+
+        // Fire Confetti animation
+        function fireConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#FFDE00', '#00A8FF', '#FF6B00', '#FF2E93', '#8E44AD']
+                });
+
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 60,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ['#FFDE00', '#FF2E93']
+                    });
+                }, 250);
+
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 60,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ['#00A8FF', '#FF6B00']
+                    });
+                }, 400);
+            }
+        }
+
+        // Lightbox Functions
+        function openLightbox(index) {
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = images[index];
+            lightboxModal.classList.remove('hidden');
+        }
+
+        function openGalleryLightbox(index) {
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = galleryImages[index];
+            lightboxModal.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            const lightboxModal = document.getElementById('lightboxModal');
+            lightboxModal.classList.add('hidden');
+        }
+
+        // Countdown Timer Logic (Target: August 23, 2026 at 3:00 PM)
+        const targetDate = new Date("2026-08-23T15:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById('countdown').classList.add('hidden');
+                document.getElementById('countdownFinished').classList.remove('hidden');
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
         updateCountdown();
         setInterval(updateCountdown, 1000);
-
-        // Intentar reproducción automática inmediata al cargar la página
-        window.addEventListener('load', () => {
-            playAudio();
-        });
-
-        // Respaldos globales para iniciar la música con cualquier toque en pantalla si el navegador bloquea el autoplay inicial
-        document.addEventListener('click', function unlockAudio() {
-            if (!isPlaying) {
-                playAudio();
-            }
-        }, { once: true });
-
-        document.addEventListener('touchstart', function unlockAudioTouch() {
-            if (!isPlaying) {
-                playAudio();
-            }
-        }, { once: true });
     </script>
 </body>
 </html>
-```eof
-
-He actualizado el código de la música:
-1. **Audio en vivo con URL directa**: Se configuró la canción "El baile de Pepo" con `autoplay` y URLs directas en formato MP3 desde GitHub.
-2. **Reproducción al entrar**: La música se inicia automáticamente apenas se carga la página.
-3. **Desbloqueo automático para móviles**: Si el navegador del celular de un invitado bloquea la música por sus políticas de privacidad, la canción se iniciará inmediatamente con el primer toque en el botón "Abrir Invitación" o en cualquier parte de la pantalla.
