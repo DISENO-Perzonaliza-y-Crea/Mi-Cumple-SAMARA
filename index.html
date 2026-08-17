@@ -150,14 +150,17 @@
                 <!-- Location Button overlayed at top of 3rd image -->
                 <div id="draggableLocationBtn" 
                      style="top: 8%; left: 50%; transform: translateX(-50%);"
-                     class="absolute z-20 flex justify-center px-2 w-[97%] max-w-[310px] sm:max-w-[435px] transition-shadow">
+                     class="absolute z-20 flex justify-center px-2 w-[58%] sm:w-[48%] max-w-[220px] sm:max-w-[310px] transition-shadow">
                     <a id="locationLink"
                        href="https://www.google.com/maps/place/20%C2%B037'44.5%22N+100%C2%B017'20.9%22W/@20.6290642,-100.2895745,19.59z/data=!4m4!3m3!8m2!3d20.629038!4d-100.289128!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="pulse-btn bg-[#FF7B2D] hover:bg-[#FF8A3D] active:scale-95 text-white font-fredoka font-black text-sm sm:text-xl py-4 sm:py-5 px-4 sm:px-7 rounded-full shadow-2xl border-2 border-white flex items-center justify-center gap-2 transition-transform text-shadow-blurred tracking-wide w-full text-center">
-                        <i class="fa-solid fa-location-dot text-yellow-300 text-lg sm:text-2xl animate-bounce"></i>
-                        <span>📍 Clic aquí para ver la Ubicación</span>
+                       class="pulse-btn bg-[#FF7B2D] hover:bg-[#FF8A3D] active:scale-95 text-white font-fredoka font-black text-sm sm:text-xl py-6 sm:py-8 px-3 sm:px-6 rounded-3xl shadow-2xl border-2 border-white flex flex-col items-center justify-center gap-1 transition-transform text-shadow-blurred tracking-wide w-full text-center leading-tight">
+                        <div class="flex items-center gap-1.5 justify-center">
+                            <i class="fa-solid fa-location-dot text-yellow-300 text-base sm:text-2xl animate-bounce"></i>
+                            <span>Clic aquí para ver</span>
+                        </div>
+                        <span>la Ubicación</span>
                     </a>
                 </div>
 
@@ -307,7 +310,7 @@
             <!-- BUTTONS CONTAINER (WHATSAPP + DIRECT CALL) -->
             <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
                 <!-- WHATSAPP MESSAGE BUTTON -->
-                <a href="https://api.whatsapp.com/send?phone=524424738983&text=%C2%A1Hola!%20Estoy%20en%20camino%20al%20cumplea%C3%B1os%20de%20Samara%20y%20necesito%20ayuda%20con%20la%20ubicaci%C3%B3n%20o%20indicaciones%20para%20llegar.%20%F0%9F%8E%89%F0%9F%93%90" 
+                <a href="https://api.whatsapp.com/send?phone=524424738983&text=%C2%A1Hola!%20Estoy%20en%20camino%20al%20cumplea%C3%B1os%20de%20Samara%20y%20necesito%20ayuda%20con%20la%20ubicaci%C3%B3n%20o%20indicaciones%20para%20llegar.%20%F0%9F%8E%89%F0%9F%93%8D" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    class="inline-flex items-center justify-center gap-2 w-full sm:w-auto flex-1 py-4 px-5 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-green-600 hover:to-emerald-700 text-white font-extrabold text-base rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95">
@@ -339,7 +342,7 @@
         </div>
     </div>
 
-    <!-- Interactive 7-Photo Carousel Lightbox Modal -->
+    <!-- Interactive 6-Photo Carousel Lightbox Modal -->
     <div id="lightboxModal" 
          class="fixed inset-0 z-50 bg-black/95 hidden backdrop-blur-md flex flex-col items-center justify-between p-3 sm:p-5 select-none touch-none" 
          onclick="if(event.target === this) closeLightbox()">
@@ -348,7 +351,7 @@
         <div class="w-full flex items-center justify-between max-w-4xl pt-2 px-2 z-20">
             <div class="bg-black/70 text-white font-fredoka font-bold text-sm sm:text-base px-4 py-1.5 rounded-full border border-white/20 shadow-lg flex items-center gap-2">
                 <i class="fa-solid fa-images text-belyYellow"></i>
-                <span id="galleryCounter" class="text-belyYellow font-black">1 / 7</span>
+                <span id="galleryCounter" class="text-belyYellow font-black">1 / 6</span>
             </div>
             <button class="bg-black/70 text-white hover:text-belyYellow text-2xl w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/20 flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer shadow-lg" 
                     onclick="closeLightbox()" title="Cerrar (Esc)">
