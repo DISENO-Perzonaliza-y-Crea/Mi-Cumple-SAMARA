@@ -49,9 +49,14 @@
     <style>
         body {
             font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(135deg, #FFDE00 0%, #FF6B00 50%, #00A8FF 100%);
-            background-attachment: fixed;
+            background-color: #f3f4f6;
             min-height: 100vh;
+        }
+
+        .text-stroke-black {
+            -webkit-text-stroke: 1px #000000;
+            text-stroke: 1px #000000;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
         }
 
         .bounce-gentle {
@@ -87,7 +92,7 @@
         .equalizer-bar:nth-child(4) { animation-delay: 0.1s; }
     </style>
 </head>
-<body class="text-slate-800 antialiased flex flex-col min-h-screen relative pb-20">
+<body class="text-slate-800 antialiased flex flex-col min-h-screen relative pb-20 select-none">
 
     <!-- AUDIO ELEMENT FOR BACKGROUND MUSIC -->
     <audio id="bgMusic" loop preload="auto">
@@ -120,71 +125,56 @@
     </div>
 
     <!-- Main Content Container -->
-    <main class="max-w-2xl mx-auto px-4 w-full flex-grow flex flex-col gap-6 my-4 relative z-10">
+    <main class="max-w-2xl mx-auto px-0 sm:px-4 w-full flex-grow flex flex-col gap-6 my-0 sm:my-4 relative z-10">
 
-        <!-- STACKED IMAGES (NO SPACES / CONTINUOUS) -->
-        <div class="bg-white rounded-3xl shadow-2xl border-4 border-white overflow-hidden flex flex-col p-0 m-0">
+        <!-- STACKED IMAGES (FULL WIDTH ON MOBILE) -->
+        <div class="bg-white rounded-none sm:rounded-3xl shadow-xl sm:shadow-2xl border-0 sm:border-4 border-white overflow-hidden flex flex-col p-0 m-0 w-full">
             <!-- IMAGE 1: SAMARA.png -->
-            <div class="relative cursor-pointer group leading-none m-0 p-0" onclick="openLightbox(0)">
+            <div class="relative leading-none m-0 p-0">
                 <img id="img-1" 
                      src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA.png" 
                      onerror="this.onerror=null; this.src='https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/SAMARA.png';"
                      alt="Invitación Samara 1" 
                      class="w-full h-auto block m-0 p-0">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-lg font-bold">
-                    <span class="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Completa
-                    </span>
-                </div>
             </div>
 
             <!-- IMAGE 2: SAMARA (1).png -->
-            <div class="relative cursor-pointer group leading-none m-0 p-0" onclick="openLightbox(1)">
+            <div class="relative leading-none m-0 p-0">
                 <img id="img-2" 
                      src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(1).png" 
                      onerror="this.onerror=null; this.src='https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/SAMARA%20(1).png';"
                      alt="Invitación Samara 2" 
                      class="w-full h-auto block m-0 p-0">
-                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-lg font-bold">
-                    <span class="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Completa
-                    </span>
-                </div>
             </div>
 
             <!-- IMAGE 3: SAMARA (2).png -->
-            <div id="image3Container" class="relative group leading-none m-0 p-0">
+            <div id="image3Container" class="relative leading-none m-0 p-0">
                 <!-- Location Button overlayed at top of 3rd image -->
                 <div id="draggableLocationBtn" 
                      style="top: 8%; left: 50%; transform: translateX(-50%);"
-                     class="absolute z-20 flex justify-center px-3 transition-shadow">
+                     class="absolute z-20 flex justify-center px-2 w-full max-w-xs sm:max-w-md transition-shadow">
                     <a id="locationLink"
-                       href="https://www.google.com/maps/place/Loncher%C3%ADa+El+Mezquite/@20.6295609,-100.2892778,3a,75y,308.32h,90t/data=!3m10!1e1!3m8!1sUro2brud0TVOpLMCJQl_Lw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DUro2brud0TVOpLMCJQl_Lw%26yaw%3D308.31921359918687!7i16384!8i8192!9m2!1b1!2i51!4m6!3m5!1s0x85d35d11e96fb45d:0x48a60daa7ecdf9c3!8m2!3d20.6294752!4d-100.2892171!16s%2Fg%2F11j132409h?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D" 
+                       href="https://www.google.com/maps/place/20%C2%B037'44.5%22N+100%C2%B017'20.9%22W/@20.6290642,-100.2895745,19.59z/data=!4m4!3m3!8m2!3d20.629038!4d-100.289128!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="pulse-btn bg-gradient-to-r from-belyRed via-belyOrange to-belyYellow hover:scale-105 active:scale-95 text-white font-black text-sm sm:text-lg py-4 sm:py-5 px-7 sm:px-9 rounded-full shadow-2xl border-2 sm:border-4 border-white flex items-center gap-3 transition-transform backdrop-blur-sm">
-                        <i class="fa-solid fa-location-dot text-belyYellow text-xl sm:text-2xl animate-bounce"></i>
+                       class="pulse-btn bg-[#FF4500] hover:bg-[#E03E00] active:scale-95 text-white font-fredoka font-black text-sm sm:text-xl py-3.5 sm:py-4 px-5 sm:px-8 rounded-full shadow-2xl border-2 border-white flex items-center justify-center gap-2 transition-transform text-stroke-black tracking-wide w-full text-center">
+                        <i class="fa-solid fa-location-dot text-yellow-300 text-lg sm:text-2xl animate-bounce"></i>
                         <span>📍 Clic aquí para ver la Ubicación</span>
                     </a>
                 </div>
 
-                <div class="relative cursor-pointer" onclick="openLightbox(2)">
+                <div class="relative">
                     <img id="img-3" 
                          src="https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(2).png" 
                          onerror="this.onerror=null; this.src='https://github.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/raw/main/SAMARA%20(2).png';"
                          alt="Invitación Samara 3" 
                          class="w-full h-auto block m-0 p-0">
-                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-lg font-bold pointer-events-none">
-                        <span class="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i> Ver Completa
-                        </span>
-                    </div>
                 </div>
             </div>
         </div>
 
         <!-- COUNTDOWN TIMER CARD -->
-        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyYellow p-5 sm:p-6 text-center transform transition-all hover:scale-[1.01]">
+        <div class="mx-3 sm:mx-0 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyYellow p-5 sm:p-6 text-center transform transition-all hover:scale-[1.01]">
             <h3 class="text-xl sm:text-2xl font-black text-belyRed mb-1 flex items-center justify-center gap-2">
                 <i class="fa-solid fa-hourglass-half animate-spin text-belyOrange" style="animation-duration: 3s;"></i>
                 <span>¡Faltan Solo!</span>
@@ -238,7 +228,7 @@
             </div>
         </div>
 
-        <!-- PHOTO GALLERY CARD -->
+        <!-- PHOTO GALLERY CARD (7 PHOTOS GRID) -->
         <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyOrange p-5 sm:p-6 text-center transform transition-all hover:scale-[1.01]">
             <h3 class="text-xl sm:text-2xl font-black text-belyOrange mb-1 flex items-center justify-center gap-2">
                 <i class="fa-solid fa-camera-retro text-belyRed animate-bounce"></i>
@@ -246,7 +236,7 @@
                 <i class="fa-solid fa-sparkles text-belyYellow"></i>
             </h3>
             <p class="text-xs sm:text-sm font-bold text-slate-600 mb-4 font-quicksand">
-                Toca cualquier foto para verla en pantalla completa 📸✨
+                Toca cualquier foto para verla en pantalla completa y deslizar 📸✨
             </p>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -291,10 +281,17 @@
                         <i class="fa-solid fa-expand"></i>
                     </div>
                 </div>
+
+                <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-amber-200 aspect-square bg-amber-50" onclick="openGalleryLightbox(6)">
+                    <img src="https://raw.githubusercontent.com/DISENO-Perzonaliza-y-Crea/Mi-Cumple-SAMARA/main/a177ec5f-0c72-4a0b-9504-845ae96e6fa9.jpg" onerror="this.onerror=null; this.src='https://github.com/DISENO-Perzonaliza-y-Crea/Mi-Cumple-SAMARA/raw/main/a177ec5f-0c72-4a0b-9504-845ae96e6fa9.jpg';" alt="Foto 7" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- WHATSAPP & CONTACT CARD -->
+        <!-- WHATSAPP & PHONE CONTACT CARD -->
         <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-belyBlue p-5 sm:p-7 text-center transform transition-all hover:scale-[1.01]">
             <h3 class="text-xl sm:text-2xl font-black text-belyBlue mb-3 flex items-center justify-center gap-2">
                 <i class="fa-solid fa-comments text-belyRed animate-bounce"></i>
@@ -303,23 +300,37 @@
 
             <div class="space-y-3 font-quicksand text-slate-700 text-sm sm:text-base font-bold mb-6 text-center leading-relaxed">
                 <p>
-                    Si tienes alguna duda sobre la ubicación, o necesitas indicaciones para llegar, no te preocupes. 😊✨
+                    Si estás por llegar y tienes alguna duda sobre la ubicación, te perdiste o necesitas indicaciones para llegar, no te preocupes. 😊📍
                 </p>
                 <p>
-                    Puedes enviarme un mensaje por WhatsApp o llamarme a ese número y con mucho gusto te ayudaré a resolver cualquier pregunta o a orientarte para que puedas llegar sin ningún problema. 📍🎉
+                    Puedes enviarnos un mensaje por WhatsApp o llamarnos al:
                 </p>
-                <p class="text-belyOrange font-extrabold text-base sm:text-lg pt-1">
-                    ¡Será un gusto recibirte y compartir contigo este día tan especial! 🥳💖
+                <p class="text-belyOrange font-extrabold text-lg sm:text-xl pt-1">
+                    <i class="fa-solid fa-phone-volume text-belyRed mr-1"></i> +52 442 473 8983
+                </p>
+                <p class="text-slate-600 font-extrabold text-sm sm:text-base">
+                    Con gusto te ayudaremos a llegar sin ningún problema. 💖🎉
                 </p>
             </div>
 
-            <a href="https://api.whatsapp.com/send?phone=5214421234567&text=%C2%A1Hola!%20Tengo%20una%20duda%20o%20necesito%20indicaciones%20para%20el%20cumplea%C3%B1os%20de%20Samara%20%F0%9F%8E%89%E2%9C%A8" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="inline-flex items-center justify-center gap-3 w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-green-600 hover:to-emerald-700 text-white font-extrabold text-base sm:text-lg rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95">
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
-                <span>Enviar mensaje o llamar por WhatsApp</span>
-            </a>
+            <!-- BUTTONS CONTAINER (WHATSAPP + DIRECT CALL) -->
+            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                <!-- WHATSAPP MESSAGE BUTTON -->
+                <a href="https://api.whatsapp.com/send?phone=524424738983&text=%C2%A1Hola!%20Estoy%20en%20camino%20al%20cumplea%C3%B1os%20de%20Samara%20y%20necesito%20ayuda%20con%20la%20ubicaci%C3%B3n%20o%20indicaciones%20para%20llegar.%20%F0%9F%8E%89%F0%9F%93%90" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center gap-2 w-full sm:w-auto flex-1 py-4 px-5 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-green-600 hover:to-emerald-700 text-white font-extrabold text-base rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>💬 Enviar mensaje por WhatsApp</span>
+                </a>
+
+                <!-- DIRECT PHONE CALL BUTTON -->
+                <a href="tel:+524424738983" 
+                   class="inline-flex items-center justify-center gap-2 w-full sm:w-auto flex-1 py-4 px-5 bg-gradient-to-r from-belyBlue to-blue-600 hover:from-blue-600 hover:to-belyBlue text-white font-extrabold text-base rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-phone text-xl"></i>
+                    <span>📞 Llamar (+52 442 473 8983)</span>
+                </a>
+            </div>
         </div>
 
     </main>
@@ -337,12 +348,53 @@
         </div>
     </div>
 
-    <!-- Lightbox Modal for Image Fullscreen Viewing -->
-    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex items-center justify-center p-4" onclick="closeLightbox()">
-        <button class="absolute top-4 right-4 text-white text-3xl p-2 hover:text-belyYellow transition-colors" onclick="closeLightbox()">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img id="lightboxImg" class="max-w-full max-h-[85vh] rounded-2xl object-contain shadow-2xl border-2 border-white/20" src="" alt="Vista ampliada">
+    <!-- Interactive 7-Photo Carousel Lightbox Modal -->
+    <div id="lightboxModal" 
+         class="fixed inset-0 z-50 bg-black/95 hidden backdrop-blur-md flex flex-col items-center justify-between p-3 sm:p-5 select-none touch-none" 
+         onclick="if(event.target === this) closeLightbox()">
+        
+        <!-- Top Control Bar (Counter & Close Button) -->
+        <div class="w-full flex items-center justify-between max-w-4xl pt-2 px-2 z-20">
+            <div class="bg-black/70 text-white font-fredoka font-bold text-sm sm:text-base px-4 py-1.5 rounded-full border border-white/20 shadow-lg flex items-center gap-2">
+                <i class="fa-solid fa-images text-belyYellow"></i>
+                <span id="galleryCounter" class="text-belyYellow font-black">1 / 7</span>
+            </div>
+            <button class="bg-black/70 text-white hover:text-belyYellow text-2xl w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/20 flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer shadow-lg" 
+                    onclick="closeLightbox()" title="Cerrar (Esc)">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Center Image Stage with Navigation Arrows -->
+        <div class="relative w-full max-w-4xl flex-1 flex items-center justify-center my-2 overflow-hidden">
+            <!-- Previous Button (Desktop / Tablet) -->
+            <button onclick="prevGalleryImage()" 
+                    class="absolute left-2 sm:left-4 z-30 bg-black/60 hover:bg-black/90 text-white text-xl sm:text-3xl w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/30 flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer shadow-2xl">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <!-- Lightbox Main Image -->
+            <img id="lightboxImg" 
+                 class="max-w-full max-h-[75vh] sm:max-h-[80vh] rounded-2xl object-contain shadow-2xl border-2 border-white/20 transition-all duration-200 ease-out" 
+                 src="" 
+                 alt="Foto de Samara">
+
+            <!-- Next Button (Desktop / Tablet) -->
+            <button onclick="nextGalleryImage()" 
+                    class="absolute right-2 sm:right-4 z-30 bg-black/60 hover:bg-black/90 text-white text-xl sm:text-3xl w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-white/30 flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer shadow-2xl">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Bottom Guidance Bar -->
+        <div class="pb-2 text-slate-300 font-quicksand font-bold text-xs sm:text-sm text-center z-20">
+            <span class="sm:hidden flex items-center justify-center gap-2 text-belyYellow">
+                <i class="fa-solid fa-hand-pointer animate-pulse"></i> Desliza horizontalmente con tu dedo
+            </span>
+            <span class="hidden sm:inline text-slate-300">
+                Usa las flechas ← → del teclado o pantalla para navegar entre las 7 fotos
+            </span>
+        </div>
     </div>
 
     <script>
@@ -358,16 +410,25 @@
             "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/SAMARA%20(2).png"
         ];
 
+        // Exact list of 7 gallery photos
         const galleryImages = [
             "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/2122b892-3a6f-4f01-8089-7679ec888468.jpg",
             "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/2181bb67-e34a-48ac-a4dc-dc8aefa7beef.jpg",
             "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/3645fb1e-6560-4062-a37d-fd4e7b2b8ef9.jpg",
             "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/751177ab-1d2e-45fb-9a14-a006f37fb67b.jpg",
             "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/7f8fd9f8-3cf4-42b3-ae6b-7cd20d0b40a7.jpg",
-            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/8c4b7da4-a083-43f3-98d8-34b2d51869ee.jpg"
+            "https://raw.githubusercontent.com/lupitacontrerasruiz-lang/Mi-Cumple-SAMARA/main/8c4b7da4-a083-43f3-98d8-34b2d51869ee.jpg",
+            "https://raw.githubusercontent.com/DISENO-Perzonaliza-y-Crea/Mi-Cumple-SAMARA/main/a177ec5f-0c72-4a0b-9504-845ae96e6fa9.jpg"
         ];
 
         let isPlaying = false;
+        let currentGalleryIndex = 0;
+
+        // Variables for mobile touch swiping
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
 
         // Function called when user clicks "Abrir Invitación" button
         function startExperience() {
@@ -437,24 +498,86 @@
             }
         }
 
-        // Lightbox Functions
-        function openLightbox(index) {
+        // Interactive Lightbox Gallery Functions
+        function openGalleryLightbox(index) {
+            currentGalleryIndex = index;
+            updateLightboxContent();
             const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxImg = document.getElementById('lightboxImg');
-            lightboxImg.src = images[index];
             lightboxModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
-        function openGalleryLightbox(index) {
-            const lightboxModal = document.getElementById('lightboxModal');
+        function updateLightboxContent() {
             const lightboxImg = document.getElementById('lightboxImg');
-            lightboxImg.src = galleryImages[index];
-            lightboxModal.classList.remove('hidden');
+            const galleryCounter = document.getElementById('galleryCounter');
+            
+            // Fade transition
+            lightboxImg.style.opacity = '0.3';
+            lightboxImg.style.transform = 'scale(0.96)';
+
+            setTimeout(() => {
+                lightboxImg.src = galleryImages[currentGalleryIndex];
+                lightboxImg.style.opacity = '1';
+                lightboxImg.style.transform = 'scale(1)';
+            }, 120);
+
+            if (galleryCounter) {
+                galleryCounter.innerText = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
+            }
+        }
+
+        function nextGalleryImage() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+            updateLightboxContent();
+        }
+
+        function prevGalleryImage() {
+            currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxContent();
         }
 
         function closeLightbox() {
             const lightboxModal = document.getElementById('lightboxModal');
             lightboxModal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore background scrolling
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lightboxModal = document.getElementById('lightboxModal');
+            if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') nextGalleryImage();
+                if (e.key === 'ArrowLeft') prevGalleryImage();
+                if (e.key === 'Escape') closeLightbox();
+            }
+        });
+
+        // Touch event listeners for mobile swipe navigation
+        const lightboxContainer = document.getElementById('lightboxModal');
+
+        lightboxContainer.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        lightboxContainer.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+
+            // Trigger swipe only when horizontal gesture is stronger than vertical
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+                if (diffX < 0) {
+                    nextGalleryImage(); // Swipe Left
+                } else {
+                    prevGalleryImage(); // Swipe Right
+                }
+            }
         }
 
         // Countdown Timer Logic (Target: August 23, 2026 at 3:00 PM)
